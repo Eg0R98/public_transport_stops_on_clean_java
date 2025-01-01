@@ -15,8 +15,8 @@ public class TimeUpdateUsingLocalFile implements TimeUpdate {
 
     @Override
     public boolean updateOrNot() throws IOException, JAXBException {
-        Unmarshalling.unmarshallTimeUpdate(urlTimeUpdate);
-        Double newTimeUpdate = Classifiers.getTimeUpdate();
+      Classifiers classifiers = Unmarshalling.unmarshallTimeUpdate(urlTimeUpdate);
+        Double newTimeUpdate = classifiers.getTimeUpdate();
         if (oldTimeUpdate == null || newTimeUpdate > oldTimeUpdate) {
             oldTimeUpdate = newTimeUpdate;
             ReadingWritingTimeUpdate.writeToFile(oldTimeUpdate);

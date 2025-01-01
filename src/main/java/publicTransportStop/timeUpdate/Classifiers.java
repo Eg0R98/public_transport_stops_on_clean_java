@@ -12,9 +12,13 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Classifiers {
     @XmlElement(name = "file")
-    private static List<File> filesWithTimeUpdate = new ArrayList<>();
+    private List<File> filesWithTimeUpdate = new ArrayList<>();
 
-    public static Double getTimeUpdate() {
+    public List<File> getFilesWithTimeUpdate() {
+        return filesWithTimeUpdate;
+    }
+
+    public Double getTimeUpdate() {
         Double d = null;
         for (File file : filesWithTimeUpdate) {
             if (file.getName().equals("stopsFullDB.xml")) {

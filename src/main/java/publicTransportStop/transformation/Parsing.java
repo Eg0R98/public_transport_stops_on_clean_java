@@ -30,10 +30,6 @@ public class Parsing {
         return builder.toString();
     }
 
-    public static String parseTimeUpdateStop(Document document) {
-        return document.select("modified").getLast().text();
-    }
-
 }
 
 

@@ -24,10 +24,10 @@ public class TimeUpdateUsingDataBase implements TimeUpdate {
     @Override
     public boolean updateOrNot() throws IOException, JAXBException, SQLException, ClassNotFoundException {
         try (Connection connection = connecting.connectToDataBase()) {
-            Unmarshalling.unmarshallTimeUpdate(urlTimeUpdate);
+          Classifiers classifiers =  Unmarshalling.unmarshallTimeUpdate(urlTimeUpdate);
             Double oldTimeUpdate = timeUpdateToSql.selectTimeUpdateFromTable(connection);
-            Double newTimeUpdate = Classifiers.getTimeUpdate();
-            if (oldTimeUpdate == null || newTimeUpdate > oldTimeUpdate) {
+            Double newTimeUpdate = classifiers.getTimeUpdate();
+            if ((oldTimeUpdate == null || newTimeUpdate > oldTimeUpdate) && newTimeUpdate != null) {
                 oldTimeUpdate = newTimeUpdate;
                 timeUpdateToSql.updateTimeUpdateTable(oldTimeUpdate, connection);
                 return true;

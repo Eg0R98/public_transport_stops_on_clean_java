@@ -1,5 +1,7 @@
 package publicTransportStop.jdbc.creation;
 
+import org.glassfish.jaxb.core.v2.model.core.ID;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +11,7 @@ public class CreatorOfMySqlTables implements CreatorOfTables {
 
     @Override
     public void createTableForTimeUpdate(Connection con) throws SQLException {
-        String tableTime = "create table timeupdate(id int primary key auto_increment not null, time double)";
+        String tableTime = "create table time_update (id int primary key auto_increment not null, time double)";
         try (Statement stmt = con.createStatement();) {
             stmt.execute(tableTime);
         }
@@ -26,9 +28,10 @@ public class CreatorOfMySqlTables implements CreatorOfTables {
         }
     }
 
+
     @Override
     public boolean isExist(String tableName, Connection con) throws SQLException {
-        String query = String.format("SELECT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'db_for_public_transport_stops' AND TABLE_NAME = '%s') " +
+        String query = String.format("SELECT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'db_for_public_transport_stops_on_clean_java' AND TABLE_NAME = '%s') " +
                 "AS table_exists", tableName);
         try (Statement statement = con.createStatement()) {
             ResultSet rs = statement.executeQuery(query);

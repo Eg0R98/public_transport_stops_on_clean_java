@@ -64,10 +64,10 @@ public class ActionsWithDataBase implements Actions {
                 creator.createTableForListStops(connection);
                 listStopsToSql.insertListStopsToTable(listStopsFromURL, connection);
             }
-            if (!creator.isExist("timeupdate", connection)) {
+            if (!creator.isExist("time_update", connection)) {
                 creator.createTableForTimeUpdate(connection);
-                Unmarshalling.unmarshallTimeUpdate(new URL("https://tosamara.ru/api/v2/classifiers"));
-                Double timeUpdate = Classifiers.getTimeUpdate();
+                Classifiers classifiers = Unmarshalling.unmarshallTimeUpdate(new URL("https://tosamara.ru/api/v2/classifiers"));
+                Double timeUpdate = classifiers.getTimeUpdate();
                 timeUpdateToSql.insertTimeUpdateToTable(timeUpdate, connection);
             }
         }

@@ -25,8 +25,7 @@ public class ActionsWithXmlStopFile implements Actions {
     }
 
     public void update() throws ConnectException {
-        try {
-            InputStream in = Request.requestForUpdateXmlStopsFile();
+        try(InputStream in = Request.requestForUpdateXmlStopsFile()) {
             Files.copy(in, xmlStops, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new ConnectException("С соединением проблемы");

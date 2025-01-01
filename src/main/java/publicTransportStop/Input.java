@@ -74,10 +74,11 @@ public class Input {
     }
 
     public static void printExceptionMessage(Exception e) {
-        if (e instanceof IOException || e instanceof ConnectException) System.err.println("С соединением проблемы");
-        else if (e instanceof JAXBException) System.err.println("Проблемы с анмаршаллингом");
-        else if (e instanceof NotMatchException) System.err.println("Ошибка. Совпадений не найдено");
-        else if (e instanceof SQLException) System.err.println("Проблемы с базой данных");
-        else if (e instanceof ClassNotFoundException) System.err.println("Не найден нужный класс");
+//        if (e instanceof IOException || e instanceof ConnectException) System.err.println("С соединением проблемы");
+//        else if (e instanceof JAXBException) System.err.println("Проблемы с анмаршаллингом");
+//        else if (e instanceof NotMatchException) System.err.println("Ошибка. Совпадений не найдено");
+//        else if (e instanceof SQLException) System.err.println("Проблемы с базой данных");
+//        else if (e instanceof ClassNotFoundException) System.err.println("Не найден нужный класс");
+        System.out.println(e.getMessage());
     }
 }

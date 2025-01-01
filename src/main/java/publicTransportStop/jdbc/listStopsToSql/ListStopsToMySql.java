@@ -41,24 +41,24 @@ public class ListStopsToMySql implements ListStopsToSql {
 
     @Override
     public void insertListStopsToTable(List<StopXmlUnmarshall> listStops, Connection con) throws SQLException {
-        String query = "insert into stops(ks_id, title, adjacentstreet, direction, busesmunicipal, busescommercial, busesprigorod, busesseason, busesspecial, busesintercity, trams, trolleybuses, metros, electrictrains, rivertransports) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "insert into stops (ks_id, title, adjacentstreet, direction, busesmunicipal, busescommercial, busesprigorod, busesseason, busesspecial, busesintercity, trams, trolleybuses, metros, electrictrains, rivertransports) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             for (StopXmlUnmarshall sxu : listStops) {
-                ps.setString(1, sxu.getTitle());
-                ps.setString(2, sxu.getAdjacentStreet());
-                ps.setString(3, sxu.getDirection());
-                ps.setString(4, sxu.getBusesMunicipal());
-                ps.setString(5, sxu.getBusesCommercial());
-                ps.setString(6, sxu.getBusesPrigorod());
-                ps.setString(7, sxu.getBusesSeason());
-                ps.setString(8, sxu.getBusesSpecial());
-                ps.setString(9, sxu.getBusesIntercity());
-                ps.setString(10, sxu.getTrams());
-                ps.setString(11, sxu.getTrolleybuses());
-                ps.setString(12, sxu.getMetros());
-                ps.setString(13, sxu.getElectricTrains());
-                ps.setString(14, sxu.getRiverTransports());
-                ps.setInt(15, sxu.getStopID());
+                ps.setInt(1, sxu.getStopID());
+                ps.setString(2, sxu.getTitle());
+                ps.setString(3, sxu.getAdjacentStreet());
+                ps.setString(4, sxu.getDirection());
+                ps.setString(5, sxu.getBusesMunicipal());
+                ps.setString(6, sxu.getBusesCommercial());
+                ps.setString(7, sxu.getBusesPrigorod());
+                ps.setString(8, sxu.getBusesSeason());
+                ps.setString(9, sxu.getBusesSpecial());
+                ps.setString(10, sxu.getBusesIntercity());
+                ps.setString(11, sxu.getTrams());
+                ps.setString(12, sxu.getTrolleybuses());
+                ps.setString(13, sxu.getMetros());
+                ps.setString(14, sxu.getElectricTrains());
+                ps.setString(15, sxu.getRiverTransports());
                 ps.addBatch();
             }
             ps.executeBatch();
